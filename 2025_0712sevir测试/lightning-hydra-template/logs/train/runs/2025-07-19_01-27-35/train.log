@@ -1,0 +1,19 @@
+[2025-07-19 01:27:36,039][src.utils.utils][INFO] - [rank: 0] Enforcing tags! <cfg.extras.enforce_tags=True>
+[2025-07-19 01:27:36,043][src.utils.utils][INFO] - [rank: 0] Printing config tree with Rich! <cfg.extras.print_config=True>
+[2025-07-19 01:27:36,080][__main__][INFO] - [rank: 0] Instantiating datamodule <src.data.sevir_datamodule.SEVIRDataModule>
+[2025-07-19 01:27:36,359][__main__][INFO] - [rank: 0] Instantiating model <src.models.convlstm_module.VILNowcastingModel>
+[2025-07-19 01:27:36,366][torch.distributed.nn.jit.instantiator][INFO] - Created a temporary directory at /tmp/tmp9mxei1cg
+[2025-07-19 01:27:36,366][torch.distributed.nn.jit.instantiator][INFO] - Writing /tmp/tmp9mxei1cg/_remote_module_non_scriptable.py
+[2025-07-19 01:27:36,403][__main__][INFO] - [rank: 0] Instantiating callbacks...
+[2025-07-19 01:27:36,404][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.ModelCheckpoint>
+[2025-07-19 01:27:36,409][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.EarlyStopping>
+[2025-07-19 01:27:36,410][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichModelSummary>
+[2025-07-19 01:27:36,411][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichProgressBar>
+[2025-07-19 01:27:36,412][__main__][INFO] - [rank: 0] Instantiating loggers...
+[2025-07-19 01:27:36,412][src.utils.instantiators][WARNING] - [rank: 0] No logger configs found! Skipping...
+[2025-07-19 01:27:36,412][__main__][INFO] - [rank: 0] Instantiating trainer <lightning.pytorch.trainer.Trainer>
+[2025-07-19 01:27:36,502][__main__][INFO] - [rank: 0] Starting training!
+[2025-07-19 01:53:38,923][__main__][INFO] - [rank: 0] Starting testing!
+[2025-07-19 01:53:55,774][__main__][INFO] - [rank: 0] Best ckpt path: /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-19_01-27-35/checkpoints/epoch_003.ckpt
+[2025-07-19 01:53:55,776][src.utils.utils][INFO] - [rank: 0] Output dir: /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-19_01-27-35
+[2025-07-19 01:53:56,747][src.utils.utils][INFO] - [rank: 0] Metric name is None! Skipping metric value retrieval...

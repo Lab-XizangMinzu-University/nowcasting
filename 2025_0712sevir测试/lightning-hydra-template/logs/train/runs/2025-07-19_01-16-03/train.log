@@ -1,0 +1,45 @@
+[2025-07-19 01:16:03,238][src.utils.utils][INFO] - [rank: 0] Enforcing tags! <cfg.extras.enforce_tags=True>
+[2025-07-19 01:16:03,242][src.utils.utils][INFO] - [rank: 0] Printing config tree with Rich! <cfg.extras.print_config=True>
+[2025-07-19 01:16:03,279][__main__][INFO] - [rank: 0] Instantiating datamodule <src.data.sevir_datamodule.SEVIRDataModule>
+[2025-07-19 01:16:03,553][__main__][INFO] - [rank: 0] Instantiating model <src.models.convlstm_module.VILNowcastingModel>
+[2025-07-19 01:16:03,561][torch.distributed.nn.jit.instantiator][INFO] - Created a temporary directory at /tmp/tmphh7_r9bp
+[2025-07-19 01:16:03,561][torch.distributed.nn.jit.instantiator][INFO] - Writing /tmp/tmphh7_r9bp/_remote_module_non_scriptable.py
+[2025-07-19 01:16:03,599][__main__][INFO] - [rank: 0] Instantiating callbacks...
+[2025-07-19 01:16:03,600][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.ModelCheckpoint>
+[2025-07-19 01:16:03,605][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.EarlyStopping>
+[2025-07-19 01:16:03,606][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichModelSummary>
+[2025-07-19 01:16:03,607][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichProgressBar>
+[2025-07-19 01:16:03,607][__main__][INFO] - [rank: 0] Instantiating loggers...
+[2025-07-19 01:16:03,608][src.utils.instantiators][WARNING] - [rank: 0] No logger configs found! Skipping...
+[2025-07-19 01:16:03,608][__main__][INFO] - [rank: 0] Instantiating trainer <lightning.pytorch.trainer.Trainer>
+[2025-07-19 01:16:03,696][__main__][INFO] - [rank: 0] Starting training!
+[2025-07-19 01:21:21,900][src.utils.utils][ERROR] - [rank: 0] 
+Traceback (most recent call last):
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/utils/utils.py", line 68, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "src/train.py", line 87, in train
+    trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"))
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 1030, in _run_stage
+    self.fit_loop.run()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fit_loop.py", line 206, in run
+    self.on_advance_end()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fit_loop.py", line 378, in on_advance_end
+    call._call_callback_hooks(trainer, "on_train_epoch_end", monitoring_callbacks=True)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 210, in _call_callback_hooks
+    fn(trainer, trainer.lightning_module, *args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/callbacks/early_stopping.py", line 190, in on_train_epoch_end
+    self._run_early_stopping_check(trainer)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/callbacks/early_stopping.py", line 202, in _run_early_stopping_check
+    if trainer.fast_dev_run or not self._validate_condition_metric(  # disable early_stopping with fast_dev_run
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/callbacks/early_stopping.py", line 153, in _validate_condition_metric
+    raise RuntimeError(error_msg)
+RuntimeError: Early stopping conditioned on metric `val/acc` which is not available. Pass in or modify your `EarlyStopping` callback to use any of the following: `train/loss`, `train/mse`, `val/loss`, `val/mse`, `val/mae`
+[2025-07-19 01:21:21,903][src.utils.utils][INFO] - [rank: 0] Output dir: /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-19_01-16-03

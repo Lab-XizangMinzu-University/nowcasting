@@ -1,0 +1,75 @@
+[2025-07-18 03:46:54,016][src.utils.utils][INFO] - [rank: 0] Enforcing tags! <cfg.extras.enforce_tags=True>
+[2025-07-18 03:46:54,020][src.utils.utils][INFO] - [rank: 0] Printing config tree with Rich! <cfg.extras.print_config=True>
+[2025-07-18 03:46:54,063][__main__][INFO] - [rank: 0] Instantiating datamodule <src.data.sevir_datamodule.SEVIRDataModule>
+[2025-07-18 03:46:54,195][__main__][INFO] - [rank: 0] Instantiating model <src.models.convlstm_module.VILNowcastingModel>
+[2025-07-18 03:46:54,203][torch.distributed.nn.jit.instantiator][INFO] - Created a temporary directory at /tmp/tmpq4p7ozjs
+[2025-07-18 03:46:54,204][torch.distributed.nn.jit.instantiator][INFO] - Writing /tmp/tmpq4p7ozjs/_remote_module_non_scriptable.py
+[2025-07-18 03:46:54,353][__main__][INFO] - [rank: 0] Instantiating callbacks...
+[2025-07-18 03:46:54,353][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.ModelCheckpoint>
+[2025-07-18 03:46:54,357][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.EarlyStopping>
+[2025-07-18 03:46:54,358][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichModelSummary>
+[2025-07-18 03:46:54,358][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichProgressBar>
+[2025-07-18 03:46:54,359][__main__][INFO] - [rank: 0] Instantiating loggers...
+[2025-07-18 03:46:54,359][src.utils.instantiators][INFO] - [rank: 0] Instantiating logger <lightning.pytorch.loggers.wandb.WandbLogger>
+[2025-07-18 03:46:54,362][__main__][INFO] - [rank: 0] Instantiating trainer <lightning.pytorch.trainer.Trainer>
+[2025-07-18 03:46:54,449][__main__][INFO] - [rank: 0] Logging hyperparameters!
+[2025-07-18 03:46:57,388][__main__][INFO] - [rank: 0] Starting training!
+[2025-07-18 03:46:59,007][src.utils.utils][ERROR] - [rank: 0] 
+Traceback (most recent call last):
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/utils/utils.py", line 68, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "src/train.py", line 87, in train
+    trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"))
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 1028, in _run_stage
+    self._run_sanity_check()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 1057, in _run_sanity_check
+    val_loop.run()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/utilities.py", line 182, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 128, in run
+    batch, batch_idx, dataloader_idx = next(data_fetcher)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fetchers.py", line 133, in __next__
+    batch = super().__next__()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fetchers.py", line 60, in __next__
+    batch = next(self.iterator)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/utilities/combined_loader.py", line 341, in __next__
+    out = next(self._iterator)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/utilities/combined_loader.py", line 142, in __next__
+    out = next(self.iterators[0])
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/_utils.py", line 644, in reraise
+    raise exception
+FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/data/sevir_datamodule.py", line 42, in __getitem__
+    with h5py.File(vil_file, 'r') as f:
+  File "/data0/cjl/.local/lib/python3.8/site-packages/h5py/_hl/files.py", line 562, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/h5py/_hl/files.py", line 235, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to synchronously open file (unable to open file: name = '/data0/cjl/code/nowcasting/data/vil/vis/2018/SEVIR_VIS_STORMEVENTS_2018_0601_0630.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+[2025-07-18 03:46:59,012][src.utils.utils][INFO] - [rank: 0] Output dir: /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-18_03-46-53
+[2025-07-18 03:46:59,012][src.utils.utils][INFO] - [rank: 0] Closing wandb!

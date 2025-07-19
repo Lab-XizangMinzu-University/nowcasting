@@ -1,0 +1,53 @@
+[2025-07-18 03:54:56,297][src.utils.utils][INFO] - [rank: 0] Enforcing tags! <cfg.extras.enforce_tags=True>
+[2025-07-18 03:54:56,301][src.utils.utils][INFO] - [rank: 0] Printing config tree with Rich! <cfg.extras.print_config=True>
+[2025-07-18 03:54:56,345][__main__][INFO] - [rank: 0] Instantiating datamodule <src.data.sevir_datamodule.SEVIRDataModule>
+[2025-07-18 03:54:56,474][__main__][INFO] - [rank: 0] Instantiating model <src.models.convlstm_module.VILNowcastingModel>
+[2025-07-18 03:54:56,482][torch.distributed.nn.jit.instantiator][INFO] - Created a temporary directory at /tmp/tmp90w325lp
+[2025-07-18 03:54:56,482][torch.distributed.nn.jit.instantiator][INFO] - Writing /tmp/tmp90w325lp/_remote_module_non_scriptable.py
+[2025-07-18 03:54:56,633][__main__][INFO] - [rank: 0] Instantiating callbacks...
+[2025-07-18 03:54:56,634][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.ModelCheckpoint>
+[2025-07-18 03:54:56,637][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.EarlyStopping>
+[2025-07-18 03:54:56,638][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichModelSummary>
+[2025-07-18 03:54:56,639][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichProgressBar>
+[2025-07-18 03:54:56,639][__main__][INFO] - [rank: 0] Instantiating loggers...
+[2025-07-18 03:54:56,639][src.utils.instantiators][INFO] - [rank: 0] Instantiating logger <lightning.pytorch.loggers.wandb.WandbLogger>
+[2025-07-18 03:54:56,642][__main__][INFO] - [rank: 0] Instantiating trainer <lightning.pytorch.trainer.Trainer>
+[2025-07-18 03:54:56,726][__main__][INFO] - [rank: 0] Logging hyperparameters!
+[2025-07-18 03:54:59,988][__main__][INFO] - [rank: 0] Starting training!
+[2025-07-18 03:55:31,486][src.utils.utils][ERROR] - [rank: 0] 
+Traceback (most recent call last):
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/utils/utils.py", line 68, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "src/train.py", line 87, in train
+    trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"))
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 1028, in _run_stage
+    self._run_sanity_check()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 1057, in _run_sanity_check
+    val_loop.run()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/utilities.py", line 182, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 135, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 396, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 311, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/strategies/strategy.py", line 411, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/models/convlstm_module.py", line 135, in validation_step
+    predictions = self(inputs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/models/convlstm_module.py", line 88, in forward
+    batch_size, seq_len, channels, height, width = x.shape
+ValueError: too many values to unpack (expected 5)
+[2025-07-18 03:55:31,493][src.utils.utils][INFO] - [rank: 0] Output dir: /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-18_03-54-56
+[2025-07-18 03:55:31,493][src.utils.utils][INFO] - [rank: 0] Closing wandb!

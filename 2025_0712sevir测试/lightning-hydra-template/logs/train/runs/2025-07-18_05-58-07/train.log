@@ -1,0 +1,69 @@
+[2025-07-18 05:58:07,641][src.utils.utils][INFO] - [rank: 0] Enforcing tags! <cfg.extras.enforce_tags=True>
+[2025-07-18 05:58:07,646][src.utils.utils][INFO] - [rank: 0] Printing config tree with Rich! <cfg.extras.print_config=True>
+[2025-07-18 05:58:07,689][__main__][INFO] - [rank: 0] Instantiating datamodule <src.data.sevir_datamodule.SEVIRDataModule>
+[2025-07-18 05:58:08,044][__main__][INFO] - [rank: 0] Instantiating model <src.models.convlstm_module.VILNowcastingModel>
+[2025-07-18 05:58:08,052][torch.distributed.nn.jit.instantiator][INFO] - Created a temporary directory at /tmp/tmpddmgmttj
+[2025-07-18 05:58:08,052][torch.distributed.nn.jit.instantiator][INFO] - Writing /tmp/tmpddmgmttj/_remote_module_non_scriptable.py
+[2025-07-18 05:58:08,103][__main__][INFO] - [rank: 0] Instantiating callbacks...
+[2025-07-18 05:58:08,104][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.ModelCheckpoint>
+[2025-07-18 05:58:08,107][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.EarlyStopping>
+[2025-07-18 05:58:08,109][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichModelSummary>
+[2025-07-18 05:58:08,109][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichProgressBar>
+[2025-07-18 05:58:08,109][__main__][INFO] - [rank: 0] Instantiating loggers...
+[2025-07-18 05:58:08,110][src.utils.instantiators][INFO] - [rank: 0] Instantiating logger <lightning.pytorch.loggers.wandb.WandbLogger>
+[2025-07-18 05:58:08,113][__main__][INFO] - [rank: 0] Instantiating trainer <lightning.pytorch.trainer.Trainer>
+[2025-07-18 05:58:08,206][__main__][INFO] - [rank: 0] Logging hyperparameters!
+[2025-07-18 05:58:08,208][__main__][INFO] - [rank: 0] Starting training!
+[2025-07-18 05:58:08,889][src.utils.utils][ERROR] - [rank: 0] 
+Traceback (most recent call last):
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/utils/utils.py", line 68, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "src/train.py", line 87, in train
+    trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"))
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 1030, in _run_stage
+    self.fit_loop.run()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fit_loop.py", line 205, in run
+    self.advance()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fit_loop.py", line 363, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 140, in run
+    self.advance(data_fetcher)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 212, in advance
+    batch, _, __ = next(data_fetcher)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fetchers.py", line 133, in __next__
+    batch = super().__next__()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fetchers.py", line 60, in __next__
+    batch = next(self.iterator)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/utilities/combined_loader.py", line 341, in __next__
+    out = next(self._iterator)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/utilities/combined_loader.py", line 78, in __next__
+    out[i] = next(self.iterators[i])
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/_utils.py", line 644, in reraise
+    raise exception
+AttributeError: Caught AttributeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/data/sevir_datamodule.py", line 136, in __getitem__
+    target_height, target_width = self.hparams.image_size
+AttributeError: 'SEVIRVILDataset' object has no attribute 'hparams'
+
+[2025-07-18 05:58:08,893][src.utils.utils][INFO] - [rank: 0] Output dir: /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-18_05-58-07

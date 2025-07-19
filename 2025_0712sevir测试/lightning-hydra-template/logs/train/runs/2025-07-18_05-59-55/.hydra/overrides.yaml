@@ -1,0 +1,2 @@
+- experiment=sevir_vil_nowcasting
+- trainer.fast_dev_run=1

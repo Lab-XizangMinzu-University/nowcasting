@@ -1,0 +1,2 @@
+- experiment=sevir_vil_nowcasting
+- trainer.max_epochs=5

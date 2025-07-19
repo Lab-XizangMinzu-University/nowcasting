@@ -1,0 +1,28 @@
+2025-07-18 03:44:59,983 INFO    MainThread:698098 [wandb_setup.py:_flush():80] Current SDK version is 0.21.0
+2025-07-18 03:44:59,983 INFO    MainThread:698098 [wandb_setup.py:_flush():80] Configure stats pid to 698098
+2025-07-18 03:44:59,983 INFO    MainThread:698098 [wandb_setup.py:_flush():80] Loading settings from /data0/cjl/.config/wandb/settings
+2025-07-18 03:44:59,983 INFO    MainThread:698098 [wandb_setup.py:_flush():80] Loading settings from /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/wandb/settings
+2025-07-18 03:44:59,984 INFO    MainThread:698098 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-07-18 03:44:59,984 INFO    MainThread:698098 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-18_03-44-26/wandb/offline-run-20250718_034459-tsn4z0ox/logs/debug.log
+2025-07-18 03:44:59,984 INFO    MainThread:698098 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-18_03-44-26/wandb/offline-run-20250718_034459-tsn4z0ox/logs/debug-internal.log
+2025-07-18 03:44:59,984 INFO    MainThread:698098 [wandb_init.py:init():830] calling init triggers
+2025-07-18 03:44:59,984 INFO    MainThread:698098 [wandb_init.py:init():835] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-07-18 03:44:59,984 INFO    MainThread:698098 [wandb_init.py:init():871] starting backend
+2025-07-18 03:45:00,208 INFO    MainThread:698098 [wandb_init.py:init():874] sending inform_init request
+2025-07-18 03:45:00,221 INFO    MainThread:698098 [wandb_init.py:init():882] backend started and connected
+2025-07-18 03:45:00,223 INFO    MainThread:698098 [wandb_init.py:init():953] updated telemetry
+2025-07-18 03:45:00,246 INFO    MainThread:698098 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout
+2025-07-18 03:45:00,391 INFO    MainThread:698098 [wandb_init.py:init():1029] starting run threads in backend
+2025-07-18 03:45:00,495 INFO    MainThread:698098 [wandb_run.py:_console_start():2458] atexit reg
+2025-07-18 03:45:00,495 INFO    MainThread:698098 [wandb_run.py:_redirect():2306] redirect: wrap_raw
+2025-07-18 03:45:00,495 INFO    MainThread:698098 [wandb_run.py:_redirect():2375] Wrapping output streams.
+2025-07-18 03:45:00,495 INFO    MainThread:698098 [wandb_run.py:_redirect():2398] Redirects installed.
+2025-07-18 03:45:00,496 INFO    MainThread:698098 [wandb_init.py:init():1075] run started, returning control to user process
+2025-07-18 03:45:00,497 INFO    MainThread:698098 [wandb_run.py:_config_callback():1363] config_cb None None {'model': {'_target_': 'src.models.convlstm_module.VILNowcastingModel', 'input_channels': 1, 'hidden_dims': [64, 128, 64], 'kernel_sizes': [[3, 3], [3, 3], [3, 3]], 'learning_rate': 0.001, 'output_frames': 12, 'compile': False}, 'model/params/total': 3248449, 'model/params/trainable': 3248449, 'model/params/non_trainable': 0, 'data': {'_target_': 'src.data.sevir_datamodule.SEVIRDataModule', 'data_dir': '/data0/cjl/code/nowcasting/2025_0712sevir测试/', 'vil_data_dir': '/data0/cjl/code/nowcasting/2025_0712sevir测试/vil', 'catalog_path': '/data0/cjl/code/nowcasting/2025_0712sevir测试/CATALOG.csv', 'image_size': [384, 384], 'input_frames': 13, 'output_frames': 12, 'frame_interval': 5, 'batch_size': 4, 'num_workers': 4, 'pin_memory': True, 'use_transforms': True, 'normalize': True, 'random_crop': False, 'train_val_test_split': [0.7, 0.2, 0.1]}, 'trainer': {'_target_': 'lightning.pytorch.trainer.Trainer', 'default_root_dir': '${paths.output_dir}', 'min_epochs': 1, 'max_epochs': 50, 'accelerator': 'gpu', 'devices': 1, 'precision': 16, 'enable_checkpointing': True, 'enable_progress_bar': True, 'enable_model_summary': True, 'check_val_every_n_epoch': 1, 'log_every_n_steps': 10, 'fast_dev_run': False}, 'callbacks': {'model_checkpoint': {'_target_': 'lightning.pytorch.callbacks.ModelCheckpoint', 'dirpath': '${paths.output_dir}/checkpoints', 'filename': 'epoch_{epoch:03d}', 'monitor': 'val/acc', 'verbose': False, 'save_last': True, 'save_top_k': 1, 'mode': 'max', 'auto_insert_metric_name': False, 'save_weights_only': False, 'every_n_train_steps': None, 'train_time_interval': None, 'every_n_epochs': None, 'save_on_train_epoch_end': None}, 'early_stopping': {'_target_': 'lightning.pytorch.callbacks.EarlyStopping', 'monitor': 'val/acc', 'min_delta': 0.0, 'patience': 100, 'verbose': False, 'mode': 'max', 'strict': True, 'check_finite': True, 'stopping_threshold': None, 'divergence_threshold': None, 'check_on_train_epoch_end': None}, 'model_summary': {'_target_': 'lightning.pytorch.callbacks.RichModelSummary', 'max_depth': -1}, 'rich_progress_bar': {'_target_': 'lightning.pytorch.callbacks.RichProgressBar'}}, 'extras': {'ignore_warnings': False, 'enforce_tags': True, 'print_config': True}, 'task_name': 'train', 'tags': ['sevir', 'vil', 'nowcasting', 'convlstm'], 'ckpt_path': None, 'seed': 42}
+2025-07-18 03:45:00,547 INFO    MainThread:698098 [wandb_run.py:_finish():2224] finishing run lightning-hydra-template/tsn4z0ox
+2025-07-18 03:45:00,547 INFO    MainThread:698098 [wandb_run.py:_atexit_cleanup():2423] got exitcode: 0
+2025-07-18 03:45:00,547 INFO    MainThread:698098 [wandb_run.py:_restore():2405] restore
+2025-07-18 03:45:00,547 INFO    MainThread:698098 [wandb_run.py:_restore():2411] restore done
+2025-07-18 03:45:00,553 INFO    MainThread:698098 [wandb_run.py:_footer_history_summary_info():3903] rendering history
+2025-07-18 03:45:00,553 INFO    MainThread:698098 [wandb_run.py:_footer_history_summary_info():3935] rendering summary

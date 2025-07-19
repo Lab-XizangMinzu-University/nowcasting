@@ -1,0 +1,9 @@
+_target_: src.models.convlstm_module.VILNowcastingModel
+
+# 使用成功的简单配置
+input_channels: 1
+hidden_dims: [16]  # 只用1层
+kernel_sizes: [[3,3]]
+learning_rate: 0.001
+output_frames: 3  # 减少输出帧数
+compile: false

@@ -1,0 +1,84 @@
+[2025-07-19 00:54:48,224][src.utils.utils][INFO] - [rank: 0] Enforcing tags! <cfg.extras.enforce_tags=True>
+[2025-07-19 00:54:48,229][src.utils.utils][INFO] - [rank: 0] Printing config tree with Rich! <cfg.extras.print_config=True>
+[2025-07-19 00:54:48,269][__main__][INFO] - [rank: 0] Instantiating datamodule <src.data.sevir_datamodule.SEVIRDataModule>
+[2025-07-19 00:54:48,588][__main__][INFO] - [rank: 0] Instantiating model <src.models.convlstm_module.VILNowcastingModel>
+[2025-07-19 00:54:48,595][torch.distributed.nn.jit.instantiator][INFO] - Created a temporary directory at /tmp/tmpun6z_2r9
+[2025-07-19 00:54:48,596][torch.distributed.nn.jit.instantiator][INFO] - Writing /tmp/tmpun6z_2r9/_remote_module_non_scriptable.py
+[2025-07-19 00:54:48,632][__main__][INFO] - [rank: 0] Instantiating callbacks...
+[2025-07-19 00:54:48,633][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.ModelCheckpoint>
+[2025-07-19 00:54:48,638][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.EarlyStopping>
+[2025-07-19 00:54:48,639][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichModelSummary>
+[2025-07-19 00:54:48,640][src.utils.instantiators][INFO] - [rank: 0] Instantiating callback <lightning.pytorch.callbacks.RichProgressBar>
+[2025-07-19 00:54:48,640][__main__][INFO] - [rank: 0] Instantiating loggers...
+[2025-07-19 00:54:48,640][src.utils.instantiators][INFO] - [rank: 0] Instantiating logger <lightning.pytorch.loggers.wandb.WandbLogger>
+[2025-07-19 00:54:48,643][__main__][INFO] - [rank: 0] Instantiating trainer <lightning.pytorch.trainer.Trainer>
+[2025-07-19 00:54:48,734][__main__][INFO] - [rank: 0] Logging hyperparameters!
+[2025-07-19 00:54:48,735][__main__][INFO] - [rank: 0] Starting training!
+[2025-07-19 00:54:50,130][src.utils.utils][ERROR] - [rank: 0] 
+Traceback (most recent call last):
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/utils/utils.py", line 68, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "src/train.py", line 87, in train
+    trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"))
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 579, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 986, in _run
+    results = self._run_stage()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/trainer.py", line 1030, in _run_stage
+    self.fit_loop.run()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fit_loop.py", line 205, in run
+    self.advance()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/fit_loop.py", line 363, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 140, in run
+    self.advance(data_fetcher)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 250, in advance
+    batch_output = self.automatic_optimization.run(trainer.optimizers[0], batch_idx, kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 190, in run
+    self._optimizer_step(batch_idx, closure)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 268, in _optimizer_step
+    call._call_lightning_module_hook(
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 159, in _call_lightning_module_hook
+    output = fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/core/module.py", line 1308, in optimizer_step
+    optimizer.step(closure=optimizer_closure)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/core/optimizer.py", line 153, in step
+    step_output = self._strategy.optimizer_step(self._optimizer, closure, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/strategies/strategy.py", line 238, in optimizer_step
+    return self.precision_plugin.optimizer_step(optimizer, model=model, closure=closure, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/plugins/precision/amp.py", line 77, in optimizer_step
+    closure_result = closure()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 144, in __call__
+    self._result = self.closure(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 129, in closure
+    step_output = self._step_fn()
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/loops/optimization/automatic.py", line 317, in _training_step
+    training_step_output = call._call_strategy_hook(trainer, "training_step", *kwargs.values())
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/trainer/call.py", line 311, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/lightning/pytorch/strategies/strategy.py", line 390, in training_step
+    return self.lightning_module.training_step(*args, **kwargs)
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/models/convlstm_module.py", line 122, in training_step
+    predictions = self(inputs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/models/convlstm_module.py", line 109, in forward
+    layer_states[i] = layer(x_t, layer_states[i])
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/src/models/convlstm_module.py", line 32, in forward
+    combined_conv = self.conv(combined)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/data0/cjl/.local/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [128, 33, 3, 3], expected input[4, 64, 384, 384] to have 33 channels, but got 64 channels instead
+[2025-07-19 00:54:50,137][src.utils.utils][INFO] - [rank: 0] Output dir: /data0/cjl/code/nowcasting/2025_0712sevir测试/lightning-hydra-template/logs/train/runs/2025-07-19_00-54-48
