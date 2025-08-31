@@ -1,0 +1,26 @@
+# configs/experiment/convlstm_adjustable.yaml
+# @package _global_
+
+defaults:
+  - override /data: sevir_vil
+  - override /model: adjustable_convlstm
+  - override /trainer: default
+  - override /callbacks: default
+
+name: "adjustable_convlstm_experiment"
+tags: ["sevir", "vil", "adjustable_convlstm"]
+seed: 42
+
+trainer:
+  max_epochs: 10
+  accelerator: cpu  # 先用CPU测试
+  devices: 1
+
+data:
+  batch_size: 2  # 减小batch size
+
+model:
+  hidden_dims: [16, 32]  # 减小模型
+  use_attention: false   # 先不用attention
+  use_residual: false
+  loss_type: "mse"
